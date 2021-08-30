@@ -1,0 +1,16 @@
+version: "3.3"
+services:
+  commit-svc:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - REDIS_URL=redis:6379
+      - GITHUB_REPO=teradici/deploy
+      - LISTEN_ADDR=:8080
+    command: ["/usr/bin/commit-svc"]
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
